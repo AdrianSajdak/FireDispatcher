@@ -22,7 +22,8 @@ Wszystkie istotne informacje (dysponowanie pojazdów, dojazd, podjęcie działa�
 
     FIREDEPARTMENTDISPATCHER/
     ├─ main.py
-    │ ├─ model/ 
+    │ 
+    ├─ model/ 
     │   ├─ car.py 
     │   ├─ event.py 
     │   ├─ event_type.py 
@@ -30,26 +31,31 @@ Wszystkie istotne informacje (dysponowanie pojazdów, dojazd, podjęcie działa�
     │   ├─ location.py 
     │   ├─ vehicle_aggregate.py 
     │   └─ vehicle_iterator.py 
-    │ ├─ observer/ 
+    │ 
+    ├─ observer/ 
     │   ├─ observed_subject.py 
     │   ├─ observer.py 
     │   └─ skkm.py 
-    │ ├─ state/ 
+    │ 
+    ├─ state/ 
     │   ├─ busy_state.py 
     │   ├─ car_state.py 
     │   ├─ car_state_context.py 
     │   ├─ free_state.py 
     │   └─ returning_state.py 
-    │ ├─ strategy/ 
+    │ 
+    ├─ strategy/ 
     │   ├─ fire_dispatch_strategy.py 
     │   ├─ i_event_dispatch_strategy.py 
     │   ├─ local_hazard_dispatch_strategy.py 
     │   └─ no_dispatch_strategy.py 
-    │ ├─ util/ 
+    │ 
+    ├─ util/ 
     │   ├─ event_generator.py 
     │   ├─ probability_utils.py 
     │   └─ time_utils.py 
-    │ ├─ README.md
+    │ 
+    ├─ README.md
 
 
 

@@ -5,17 +5,6 @@ import time
 from observer.skkm import SKKM
 from model.fire_station import FireStation
 from util.event_generator import EventGenerator
-from util.probability_utils import random_int
-
-def event_generation_loop(skkm: SKKM):
-    generator = EventGenerator()
-    while True:
-        # Generowanie co 15-35s
-        wait_time = random_int(15, 35)
-        time.sleep(wait_time)
-        event = generator.generate_event()
-        print(f"[{time.strftime('%H:%M:%S')}] Wygenerowano zdarzenie: {event}")
-        skkm.handle_event(event)  # Używamy handle_event zamiast notify_all
 
 def main():
     skkm = SKKM()
@@ -36,7 +25,9 @@ def main():
     for s in stations:
         skkm.add_observer(s)
 
-    event_thread = threading.Thread(target=event_generation_loop, args=(skkm,), daemon=True)
+    generator = EventGenerator()
+
+    event_thread = threading.Thread(target=generator.event_generation_loop, args=(skkm,), daemon=True)
     event_thread.start()
 
     while True:

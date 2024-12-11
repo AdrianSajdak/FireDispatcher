@@ -1,3 +1,5 @@
+import time
+from util.probability_utils import random_int
 from model.event import Event
 from model.event_type import EventType
 from model.location import Location
@@ -17,3 +19,11 @@ class EventGenerator:
         is_mz = random_boolean(0.7)
         event_type = EventType.MZ if is_mz else EventType.PZ
         return Event(event_type, location)
+    
+    def event_generation_loop(self, skkm):
+        while True:
+            wait_time = random_int(10, 25)
+            time.sleep(wait_time)
+            event = self.generate_event()
+            print(f"[{time.strftime('%H:%M:%S')}] Zgłoszono zdarzenie: {event}")
+            skkm.handle_event(event)

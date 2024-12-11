@@ -1,5 +1,3 @@
-# FIREDEP/model/fire_station.py
-
 import threading
 import time
 from model.vehicle_aggregate import VehicleAggregate
@@ -28,12 +26,11 @@ class FireStation(VehicleAggregate):
         return self._location.distance_to(other)
 
     def try_dispatch_cars(self, count: int):
-        """Próbuje pobrać 'count' wolnych pojazdów. Zwraca listę pojazdów lub None jeśli się nie uda."""
         with self._lock:
             free_cars = [c for c in self._cars if c.is_free()]
             if len(free_cars) < count:
                 return None
-            # Pobieramy 'count' pojazdów i ustawiamy je jako Busy
+
             selected = free_cars[:count]
             for c in selected:
                 c.set_busy()
@@ -41,24 +38,21 @@ class FireStation(VehicleAggregate):
             return selected
 
     def handle_dispatched_event(self, event, dispatched_cars):
-        # Uruchamiamy wątek symulujący przebieg akcji
         t = threading.Thread(target=self._event_action_thread, args=(event, dispatched_cars,))
         t.start()
 
     def _event_action_thread(self, event, dispatched_cars):
-        # Symulujemy dojazd
+
         travel_time = random_int(0,3)
         print(f"[{time.strftime('%H:%M:%S')}] {self._name}: Pojazdy {', '.join(str(c) for c in dispatched_cars)} "
               f"wyruszyły do zdarzenia {event}. Czas dojazdu: ~{travel_time}s")
         sleep(travel_time)
 
-        # Sprawdzamy alarm fałszywy 5%
         if random_boolean(0.05):
-            print(f"[{time.strftime('%H:%M:%S')}] {self._name}: Alarm fałszywy dla: {event}, pojazdy wracają")
+            print(f"[{time.strftime('%H:%M:%S')}] {self._name}: Alarm fałszywy dla: {event}")
             self.return_vehicles(dispatched_cars)
             return
 
-        # Działania (5-25s)
         action_time = random_int(5,25)
         print(f"[{time.strftime('%H:%M:%S')}] {self._name}: Rozpoczęto działania: {event} (ok. {action_time}s)")
         sleep(action_time)

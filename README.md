@@ -8,15 +8,14 @@ Wykorzystane zostały wzorce projektowe:
 - **Stan** (stan pojazdu: wolny, zajęty, powracający),
 - **Iterator** (iteracja po kolekcji pojazdów w jednostce).
 
-Zdarzenia generowane są co 15-35 sekund. Po każdym wygenerowaniu zdarzenia SKKM decyduje, które i ile pojazdów z najbliżej położonych jednostek zadysponować. Pojazdy dojeżdżają na miejsce zdarzenia (czas 0-3s), sprawdzane jest, czy jest to alarm fałszywy (5% szans):
+Zdarzenia generowane są co 10-25 sekund. Po każdym wygenerowaniu zdarzenia SKKM decyduje, które i ile pojazdów z najbliżej położonych jednostek zadysponować. Pojazdy dojeżdżają na miejsce zdarzenia (czas 0-3s), sprawdzane jest, czy jest to alarm fałszywy (5% szans):
 - Jeśli alarm jest fałszywy, pojazdy wracają natychmiast.
 - Jeśli nie, podejmowane są działania (5-25s), po których pojazdy wracają do jednostek (0-3s).
 
 Wszystkie istotne informacje (dysponowanie pojazdów, dojazd, podjęcie działań, powrót) są logowane w konsoli.
 
 ## Wymagania
-- Python 3.8+ (rekomendowany)
-- Biblioteki standardowe (brak dodatkowych zewnętrznych zależności)
+- Python 3.8+
 
 ## Struktura katalogów
 
@@ -60,7 +59,7 @@ Wszystkie istotne informacje (dysponowanie pojazdów, dojazd, podjęcie działa�
 
 
 ## Uruchomienie
-1. Przejdź do głównego katalogu `FIREDEP`.
+1. Przejdź do głównego katalogu `FIREDEPARTMENTDISPATCHER`.
 2. Upewnij się, że masz zainstalowaną wymaganą wersję Pythona.
 3. Uruchom symulację poleceniem:
    ```bash

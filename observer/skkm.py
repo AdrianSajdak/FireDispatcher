@@ -10,7 +10,7 @@ class SKKM(ObservedSubject):
 
     def remove_observer(self, o):
         self._observers.remove(o)
-
+    
     def notify_all(self, event):
         pass
 
